@@ -4,7 +4,9 @@ import greenfoot.*;
 
 public class Enemy extends Actor {
     private int health = 3;
-
+    public int moveX = 0;
+    public int moveY = 0;
+    
     public Enemy() {
         turn(Greenfoot.getRandomNumber(360));
     }
@@ -12,6 +14,7 @@ public class Enemy extends Actor {
     public void act() {
         moveAround();
         hitByPlayer();
+        checkCollision();
     }
 
     public void moveAround() {
@@ -41,6 +44,27 @@ public class Enemy extends Actor {
         }
         if (health < 1) {
             getWorld().removeObject(this);
+        }
+    }
+    public void checkCollision()
+    {
+        if (health > 1) {
+            if (getX()< 50 )
+            {
+                turn(180);
+            }
+            if (getY()< 140 )
+            {
+                turn(180);
+            }
+            if (getX()>getWorld().getWidth()- 50 )
+            {
+                turn(180);
+            }
+            if (getY()>getWorld().getHeight() - 50 )
+            {
+                turn(180);
+            }
         }
     }
 }
